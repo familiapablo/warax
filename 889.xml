@@ -1079,12 +1079,12 @@
   
 </body>
 
-<!-- GOOGLE -->
+<!-- Sticky Bottom Center Ad (728x90) with Smooth Slide-Out and Reappearance -->
 <style>
-  /* Container: Top center, fixed, with overflow hidden */
+  /* Container: Bottom center, fixed, with overflow hidden */
   #ad-container {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: min(728px, calc(100% - 20px)); /* 728px, 10px margin on mobile */
@@ -1094,14 +1094,14 @@
     z-index: 99999;
     border-radius: 0; /* Sharp corners */
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.45);
     box-sizing: border-box;
     transition: transform 0.5s ease-in-out; /* Smooth slide-in/out animation */
   }
 
   /* Slide-out animation */
   #ad-container.hidden {
-    transform: translate(-50%, -100%); /* Slide up out of view */
+    transform: translate(-50%, 100%); /* Slide down out of view */
   }
 
   #ad-iframe {
@@ -1119,6 +1119,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
   #ad-iframe::-webkit-scrollbar {
     display: none;
     width: 0;
@@ -1147,7 +1148,7 @@
     opacity: 1;
   }
   #close-ad::before {
-    content: '↑'; /* Up arrow */
+    content: '↓'; /* Down arrow for bottom ad */
     margin-right: 4px;
   }
 
@@ -1172,7 +1173,7 @@
       border-radius: 0; /* Sharp corners on mobile */
     }
     #ad-iframe {
-      width: 708px;
+      width: 728px;
     }
   }
 </style>
@@ -1185,7 +1186,6 @@
     height="95px"
     scrolling="no"
     frameborder="0"
-
     sandbox="allow-scripts allow-popups allow-same-origin"
   ></iframe>
   <button id="close-ad" disabled>Close (12)</button>
@@ -1194,9 +1194,9 @@
 
 <script>
   (function () {
-    const showDelay = 9000; // 2 seconds delay before first show
+    const showDelay = 2000; // 2 seconds delay before first show
     const countdownStart = 12; // 12 seconds countdown
-    const reappearDelay = 25000; // 25 seconds before reappearance
+    const reappearDelay = 150000; // 25 seconds before reappearance
     const adContainer = document.getElementById('ad-container');
     const closeBtn = document.getElementById('close-ad');
 
@@ -1220,7 +1220,7 @@
           clearInterval(t);
           closeBtn.disabled = false;
           closeBtn.classList.add('enabled');
-          closeBtn.textContent = 'Close ↑';
+          closeBtn.textContent = 'Close ↓';
         }
       }, 1000);
     }
